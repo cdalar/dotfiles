@@ -54,4 +54,18 @@ else
 fi
 
 echo ""
-echo "Done! Open a new shell or run: source ~/.bash_profile"
+echo "==> Setting default shell to Homebrew bash"
+BREW_BASH="/opt/homebrew/bin/bash"
+if [ "$SHELL" = "$BREW_BASH" ]; then
+  echo "  Already using $BREW_BASH"
+else
+  if ! grep -qF "$BREW_BASH" /etc/shells; then
+    echo "  Adding $BREW_BASH to /etc/shells (requires sudo)"
+    echo "$BREW_BASH" | sudo tee -a /etc/shells
+  fi
+  chsh -s "$BREW_BASH"
+  echo "  Default shell set to $BREW_BASH"
+fi
+
+echo ""
+echo "Done! Open a new terminal — it will use bash."
