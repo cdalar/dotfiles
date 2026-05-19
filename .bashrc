@@ -28,6 +28,9 @@ plugins=(
 
 source "$OSH"/oh-my-bash.sh
 
+# bold_gray (ANSI 90) is invisible on dark terminal backgrounds — use bold white instead
+_omb_prompt_bold_gray='\[\e[97;1m\]'
+
 # Load local environment variables and secrets (not committed to git)
 [ -f ~/.env.local ] && source ~/.env.local
 
